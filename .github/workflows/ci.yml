@@ -13,7 +13,7 @@ jobs:
     # WPF ne se compile que sous Windows.
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-dotnet@v4
         with:
