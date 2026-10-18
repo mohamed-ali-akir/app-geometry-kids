@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Geometrie.App/Geometrie.App.csproj" />
+    <Project Path="src/Geometrie.Core/Geometrie.Core.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Geometrie.Core.Tests/Geometrie.Core.Tests.csproj" />
+  </Folder>
+</Solution>

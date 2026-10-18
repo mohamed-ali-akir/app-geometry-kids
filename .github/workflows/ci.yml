@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-et-tests:
+    # WPF ne se compile que sous Windows.
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Restauration
+        run: dotnet restore Geometrie.slnx
+
+      - name: Compilation (les avertissements sont des erreurs)
+        run: dotnet build Geometrie.slnx --configuration Release --no-restore
+
+      - name: Tests
+        run: dotnet test Geometrie.slnx --configuration Release --no-build --logger "trx;LogFileName=resultats.trx"
+
+      - name: Résultats des tests
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: resultats-tests
+          path: "**/TestResults/*.trx"

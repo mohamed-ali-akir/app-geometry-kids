@@ -129,18 +129,9 @@
                     <StackPanel>
                         <TextBlock Text="Mon exercice" Style="{StaticResource SectionTitle}"/>
 
-                        <ComboBox x:Name="FormeComboBox" Visibility="Collapsed"
-                                  SelectionChanged="FormeComboBox_SelectionChanged">
-                            <ComboBoxItem Content="Carré"/>
-                            <ComboBoxItem Content="Rectangle"/>
-                            <ComboBoxItem Content="Cercle"/>
-                            <ComboBoxItem Content="Triangle"/>
-                            <ComboBoxItem Content="Ellipse"/>
-                        </ComboBox>
-
                         <Label Content="Je choisis une forme"/>
                         <UniformGrid Columns="2" Margin="0,2,0,12">
-                            <Button x:Name="CarreButton" Tag="Carré" Content="◼ Carré"
+                            <Button x:Name="CarreButton" Tag="Carre" Content="◼ Carré"
                                     Style="{StaticResource ShapeButton}" Click="FormeButton_Click"/>
                             <Button x:Name="RectangleButton" Tag="Rectangle" Content="▭ Rectangle"
                                     Style="{StaticResource ShapeButton}" Click="FormeButton_Click"/>
@@ -248,7 +239,8 @@
                                 </LinearGradientBrush>
                             </Border.Background>
                             <Canvas x:Name="FormeCanvas" Background="Transparent"
-                                    MinHeight="390" ClipToBounds="True"/>
+                                    MinHeight="390" ClipToBounds="True"
+                                    SizeChanged="FormeCanvas_SizeChanged"/>
                         </Border>
                         <TextBlock x:Name="DimensionsTextBlock" Grid.Row="2"
                                    FontSize="17" TextWrapping="Wrap"
