@@ -21,7 +21,7 @@ L'application corrige, affiche la formule et récompense la progression.
 | Projet | Rôle |
 |---|---|
 | `Geometrie` | Application WPF (fenêtres, interactions, dessin) |
-| `Geometrie.Core` | Bibliothèque métier : formes (héritage depuis une classe de calcul commune), progression, badges |
+| `Geometrie.Core` | Bibliothèque métier : formes organisées en hiérarchie de classes abstraites (`ClasseCalcul` → `ClasseAvecAngle` / `ClasseRond` → formes concrètes), progression, badges |
 | `Geometrie.Tests` | Tests des formules, du score, de l'XP, des badges et du Mode Aventure |
 
 La logique métier est séparée de l'interface pour pouvoir la tester sans lancer l'application.
