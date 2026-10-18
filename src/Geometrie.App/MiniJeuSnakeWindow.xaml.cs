@@ -104,7 +104,10 @@ namespace Geometrie
 
         private void CompleterPommes()
         {
-            while (pommes.Count < NombrePommes)
+            // Sans cette limite, la boucle ne s'arrêterait jamais si le serpent remplissait toute la grille.
+            int casesLibres = TailleGrille * TailleGrille - serpent.Count;
+
+            while (pommes.Count < Math.Min(NombrePommes, casesLibres))
             {
                 (int X, int Y) nouvellePomme;
 

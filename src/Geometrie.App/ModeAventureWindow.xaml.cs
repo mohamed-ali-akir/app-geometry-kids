@@ -9,15 +9,6 @@ namespace Geometrie
     {
         private readonly Progression progression;
 
-        private static readonly AventureMonde[] Mondes =
-        [
-            new(1, "🟦", "Village du Carré", "Exercices sur le carré"),
-            new(2, "▭", "Forêt du Rectangle", "Exercices sur le rectangle"),
-            new(3, "⚪", "Lac du Cercle", "Exercices sur le cercle"),
-            new(4, "🔺", "Montagne du Triangle", "Exercices sur le triangle"),
-            new(5, "🏰", "Château des Formes", "Défi final avec formes mélangées")
-        ];
-
         public int? NiveauChoisi { get; private set; }
 
         public ModeAventureWindow(Progression progression)
@@ -31,7 +22,7 @@ namespace Geometrie
         {
             MondesWrapPanel.Children.Clear();
 
-            foreach (AventureMonde monde in Mondes)
+            foreach (MondeAventure monde in Aventure.Mondes)
             {
                 bool debloque = progression.NiveauAventureDebloque(monde.Niveau);
                 int reussites = progression.ReussitesNiveauAventure(monde.Niveau);
@@ -73,7 +64,7 @@ namespace Geometrie
 
                 pile.Children.Add(new TextBlock
                 {
-                    Text = debloque ? Etoiles(reussites) : "☆☆☆",
+                    Text = Aventure.Etoiles(debloque ? reussites : 0),
                     FontSize = 20,
                     Foreground = Brushes.Goldenrod,
                     HorizontalAlignment = HorizontalAlignment.Center,
@@ -83,7 +74,7 @@ namespace Geometrie
                 pile.Children.Add(new TextBlock
                 {
                     Text = debloque
-                        ? $"Progression : {reussites} / 3 réussites"
+                        ? $"Progression : {reussites} / {Aventure.ReussitesParMonde} réussites"
                         : "Débloque le monde précédent.",
                     FontSize = 13,
                     TextWrapping = TextWrapping.Wrap,
@@ -110,12 +101,6 @@ namespace Geometrie
             }
         }
 
-        private static string Etoiles(int reussites)
-        {
-            int etoiles = Math.Clamp(reussites, 0, 3);
-            return new string('★', etoiles) + new string('☆', 3 - etoiles);
-        }
-
         private void JouerButton_Click(object sender, RoutedEventArgs e)
         {
             if (sender is not Button bouton || bouton.Tag is not int niveau)
@@ -132,7 +117,5 @@ namespace Geometrie
         {
             Close();
         }
-
-        private sealed record AventureMonde(int Niveau, string Icone, string Nom, string Description);
     }
 }
